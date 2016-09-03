@@ -1,12 +1,17 @@
   // MyChat App - Ionic & Firebase Demo
 
-     // 'mychat.services' is found in services.js
-      // 'mychat.controllers' is found in controllers.js
+      /**
+        * Now we can use $firebase service to sync data with
+        * Firebase and $firebaseAuth for Authentication helper functions.
+      */
       angular.module('mychat', ['ionic', 'mychat.controllers', 'mychat.services', 'firebase'])
      .run(function ($ionicPlatform, $rootScope) {
      $ionicPlatform.ready(function () {
-    // Hide the accessory bar by default (remove this to show the accessory bar          above the keyboard
-    // for form inputs)
+    /**
+      * Hide the accessory bar by default (remove this to show the accessory bar
+      * above the keyboard
+      * for form inputs)
+    */
     if(window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
