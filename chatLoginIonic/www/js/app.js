@@ -2,8 +2,7 @@
 
      // 'mychat.services' is found in services.js
       // 'mychat.controllers' is found in controllers.js
-     angular.module('mychat', ['ionic', 'mychat.controllers', 'mychat.services'])
-
+      angular.module('mychat', ['ionic', 'mychat.controllers', 'mychat.services', 'firebase'])
      .run(function ($ionicPlatform, $rootScope) {
      $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar          above the keyboard
