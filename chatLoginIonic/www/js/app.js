@@ -1,6 +1,6 @@
 // MyChat App - Ionic & Firebase Demo
 
-var firebaseUrl = "https://inglesnow.firebaseio.com";
+var firebaseUrl = "https://authioniccatolica.firebaseio.com";
 
 function onDeviceReady() {
     angular.bootstrap(document, ["mychat"]);
