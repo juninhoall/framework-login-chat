@@ -105,26 +105,24 @@ angular.module('mychat.controllers', [])
         });
     }
 })
-.controller("AppCtrl", function($scope, Auth){
+.controller("AppCtrl", function($scope, Auth, $state){
 
   Auth.$onAuth(function(authData){
     if (authData === null) {
       console.log('usuario nao autenticado');
     }else {
-      console.log('usuario está autenticado');
-      console.log(authData);
+      $state.go('tab.rooms');
     }
 
     $scope.authData = authData;
 
   })
   $scope.login = function(authMethod, $state){
-    Auth.$authWithOAuthRedirect(authMethod).then(function(authData){
-          $state.go('/tab.chat');
-    }).catch(function(error){
+    Auth.$authWithOAuthRedirect(authMethod).catch(function(error){
+      console.log('dasdashdaksj');
       if (error.code === 'TRANSPORT_UNAVAILABLE'){
         Auth.$authWithOAuthPopup(authData).then(function(authData){
-          $state.go('/chat');
+
         });
       }else{
         console.log('Error.:');
