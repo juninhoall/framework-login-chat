@@ -106,6 +106,18 @@ angular.module('mychat.controllers', [])
     }
 })
 .controller("AppCtrl", function($scope, Auth){
+
+  Auth.$onAuth(function(authData){
+    if (authData === null) {
+      console.log('usuario nao autenticado');
+    }else {
+      console.log('usuario está autenticado');
+      console.log(authData);
+    }
+
+    $scope.authData = authData;
+    
+  })
   $scope.login = function(authMethod){
     Auth.$authWithOAuthRedirect(authMethod).then(function(authData){
 
