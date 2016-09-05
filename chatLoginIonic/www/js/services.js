@@ -4,7 +4,12 @@ angular.module('mychat.services', ['firebase'])
             var ref = new Firebase(firebaseUrl);
             return $firebaseAuth(ref);
 }])
+.factory('Auth', function($firebaseAuth){
+  var endPoint = "https://authioniccatolica.firebaseio.com/users";
+  var usersRef= new Firebase(endPoint);
 
+  return $firebaseAuth(usersRef);
+})
 .factory('Chats', function ($firebase, Rooms) {
 
     var selectedRoomId;

@@ -104,4 +104,7 @@ angular.module('mychat.controllers', [])
             roomId: roomId
         });
     }
+})
+.controller("AppCtrl", function(){
+
 });
