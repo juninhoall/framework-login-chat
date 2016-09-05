@@ -105,6 +105,17 @@ angular.module('mychat.controllers', [])
         });
     }
 })
-.controller("AppCtrl", function(){
+.controller("AppCtrl", function($scope, Auth){
+  $scope.login = function(authMethod){
+    Auth.$authWithOAuthRedirect(authMethod).then(function(authData){
 
+    }).catch(function(error){
+      if (error.code === 'TRANSPORT_UNAVAILABLE') {
+        Auth.$authWithOAuthPopup(authData).then(function(authData){
+        });
+      }else {
+        console.log(error);
+      }
+    })
+  };
 });
