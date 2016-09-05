@@ -1,5 +1,10 @@
-<ion-view view-title="Chat">
-    <ion-content class="padding">
-
+<ion-view view-title="Login">
+    <ion-content class="padding" ng-controller="AppCtrl">
+      <div class="list card" ng-if="authData.facebook">
+        <div class="item item-avatar">
+            <img src="" ng-src="{{authData.facebook.profileImageURL}}" alt="{{authData.facebook.displayName}}" />
+            <h3>{{authData.facebook.displayName}}</h3>
+        </div>
+      </div>
     </ion-content>
 </ion-view>

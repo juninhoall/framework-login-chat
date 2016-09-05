@@ -118,12 +118,13 @@ angular.module('mychat.controllers', [])
     $scope.authData = authData;
 
   })
-  $scope.login = function(authMethod){
+  $scope.login = function(authMethod, $state){
     Auth.$authWithOAuthRedirect(authMethod).then(function(authData){
-
+          $state.go('/tab.chat');
     }).catch(function(error){
       if (error.code === 'TRANSPORT_UNAVAILABLE'){
         Auth.$authWithOAuthPopup(authData).then(function(authData){
+          $state.go('/chat');
         });
       }else{
         console.log('Error.:');
