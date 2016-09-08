@@ -11,7 +11,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 // 'mychat.services' is found in services.js
 // 'mychat.controllers' is found in controllers.js
-angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controllers', 'mychat.services'])
+angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controllers', 'mychat.services', 'btford.socket-io'])
 
 .run(function ($ionicPlatform, $rootScope, $location, Auth, $ionicLoading) {
     $ionicPlatform.ready(function () {
@@ -107,7 +107,7 @@ angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controll
         url: '/rooms',
         views: {
             'tab-rooms': {
-                templateUrl: 'templates/tab-rooms.html',
+                templateUrl: 'templates/chat.html',
                 controller: 'RoomsCtrl'
             }
         }

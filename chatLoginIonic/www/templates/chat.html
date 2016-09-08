@@ -1,10 +1,37 @@
-<ion-view view-title="Login">
-    <ion-content class="padding" ng-controller="AppCtrl">
-      <div class="list card" ng-if="authData.facebook">
-        <div class="item item-avatar">
-            <img src="" ng-src="{{authData.facebook.profileImageURL}}" alt="{{authData.facebook.displayName}}" />
-            <h3>{{authData.facebook.displayName}}</h3>
-        </div>
-      </div>
-    </ion-content>
-</ion-view>
+<html>
+<head>
+  <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+</head>
+<body>
+  <input type="text" id="nomeusuario" placeholder="Seu nome...">
+  <input type="text" id="mensagem" placeholder="Sua mensagem...">
+  <script>
+    var APP = new Firebase('https://authioniccatolica.firebaseio.com/');
+
+    $('#mensagem').keypress(function (e) {
+      if (e.keyCode == 13) {
+
+        var msg = $('#mensagem').val();
+        var usr = $('#nomeusuario').val();
+        APP.push({ nomeusuario: usr, mensagem: msg });
+
+        $('#mensagem').val('');
+      }
+    });
+
+    APP.on('child_added', function(snap) {
+          var novamensagem = snap.val(); //Nova mensagem recebida.
+          carregaMensagem(novamensagem.nomeusuario, novamensagem.mensagem);
+        });
+
+        function carregaMensagem(nome, mensagem) {
+          $('<div/>').text(mensagem)
+            .prepend($('<strong/>').text(nome + ': '))
+            .appendTo($('#mensagens'));
+
+          $('#mensagens')[0].scrollTop = $('#mensagens')[0].scrollHeight;
+        };
+  </script>
+</body>
+</html>
