@@ -130,4 +130,20 @@ angular.module('mychat.controllers', [])
       }
     })
   };
+})
+
+.controller('HomeTabCtrl', function($scope, $state, $firebase) {
+   var ref = new Firebase("https://vaisabrina.firebaseio.com/");
+        $scope.messages = $firebase(ref);
+        $scope.addMessage = function(e) {
+           $scope.sendMsg = function() {
+                  $scope.messages.$add({from: $scope.name, body: $scope.msg});
+                  $scope.msg = "";
+                }
+        }
+        $scope.clear = function(){
+          $scope.name = "";
+        }
+  console.log('HomeTabCtrl');
+
 });
