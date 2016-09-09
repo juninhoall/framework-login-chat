@@ -1,35 +1,14 @@
-<ion-view view-title="Chat Real Time">
-    <ion-content>
-      <div id='mensagens'></div>
-  <input type="text" id="nomeusuario" placeholder="Seu nome...">
-  <input type="text" id="mensagem" placeholder="Sua mensagem...">
-  <script>
-    var APP = new Firebase('https://tableless.firebaseio.com/');
-
-    $('#mensagem').keypress(function (e) {
-      if (e.keyCode == 13) {
-
-        var msg = $('#mensagem').val();
-        var usr = $('#nomeusuario').val();
-        APP.push({ nomeusuario: usr, mensagem: msg });
-
-        $('#mensagem').val('');
-      }
-    });
-
-    APP.on('child_added', function(snap) {
-      var novamensagem = snap.val(); //Nova mensagem recebida.
-      carregaMensagem(novamensagem.nomeusuario, novamensagem.mensagem);
-    });
-
-    function carregaMensagem(nome, mensagem) {
-      $('<div/>').text(mensagem)
-        .prepend($('<strong/>').text(nome + ': '))
-        .appendTo($('#mensagens'));
-
-      $('#mensagens')[0].scrollTop = $('#mensagens')[0].scrollHeight;
-    };
-  </script>
-
-    </ion-content>
-</ion-view>
+<ion-view title="Home">
+        <ion-content class="padding">
+           <div ng-controller="HomeTabCtrl">
+                <div id="messagesDiv">
+                    <div ng-repeat="msg in messages">[<em>{{msg.from}}</em>] Msg:   {{msg.body}}</div>
+                </div>
+         		 </br>
+               </br>
+                <input type="text" ng-model="name" placeholder="Name">
+                <input type="text" ng-model="msg" ng-keydown="addMessage($event)" placeholder="Message...">
+                <button class="button button-calm" ng-click="sendMsg()">  send   </button>
+            </div>
+        </ion-content>
+      </ion-view>
