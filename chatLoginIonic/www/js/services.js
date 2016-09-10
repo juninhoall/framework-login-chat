@@ -7,7 +7,8 @@ angular.module('mychat.services', ['firebase'])
 .factory('Auth', function($firebaseAuth){
   var usersRef= new Firebase(firebaseUrl);
   return $firebaseAuth(usersRef);
-})
+});
+/*
 .factory('Chats', function ($firebase, Rooms) {
 
     var selectedRoomId;
@@ -65,10 +66,12 @@ angular.module('mychat.services', ['firebase'])
         }
     }
 })
+*/
 
 /**
  * Simple Service which returns Rooms collection as Array from Salesforce & binds to the Scope in Controller
  */
+ /*
 .factory('Rooms', function ($firebase) {
     // Might use a resource here that returns a JSON array
     var ref = new Firebase(firebaseUrl);
@@ -84,3 +87,4 @@ angular.module('mychat.services', ['firebase'])
         }
     }
 });
+*/

@@ -1,4 +1,4 @@
-angular.module('mychat.controllers', [])
+angular.module('mychat.controllers', ['ionic', 'firebase'])
 
 .controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
     //console.log('Login Controller Initialized');
@@ -66,7 +66,7 @@ angular.module('mychat.controllers', [])
             alert("Please enter email and password both");
     }
 })
-
+/*
 .controller('ChatCtrl', function ($scope, Chats, $state) {
     //console.log("Chat Controller initialized");
 
@@ -105,6 +105,7 @@ angular.module('mychat.controllers', [])
         });
     }
 })
+*/
 .controller("AppCtrl", function($scope, Auth, $state){
 
   Auth.$onAuth(function(authData){
@@ -119,7 +120,7 @@ angular.module('mychat.controllers', [])
   })
   $scope.login = function(authMethod, $state){
     Auth.$authWithOAuthRedirect(authMethod).catch(function(error){
-      console.log('dasdashdaksj');
+      console.log('');
       if (error.code === 'TRANSPORT_UNAVAILABLE'){
         Auth.$authWithOAuthPopup(authData).then(function(authData){
 
@@ -132,12 +133,16 @@ angular.module('mychat.controllers', [])
   };
 })
 
-.controller('HomeTabCtrl', function($scope, $state, $firebase) {
-   var ref = new Firebase("https://vaisabrina.firebaseio.com/");
+.controller('HomeTabCtrl', function($scope, $state, $firebase, $rootScope) {
+
+   var ref = new Firebase('https://vaisabrina.firebaseio.com/');
+
         $scope.messages = $firebase(ref);
         $scope.addMessage = function(e) {
            $scope.sendMsg = function() {
-                  $scope.messages.$add({from: $scope.name, body: $scope.msg});
+                  $scope.messages.$add({
+                    from: $scope.name, body: $scope.msg
+                  });
                   $scope.msg = "";
                 }
         }

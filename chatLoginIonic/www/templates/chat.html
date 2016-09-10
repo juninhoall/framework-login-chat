@@ -1,14 +1,57 @@
-<ion-view title="Home">
-        <ion-content class="padding">
-           <div ng-controller="HomeTabCtrl">
-                <div id="messagesDiv">
-                    <div ng-repeat="msg in messages">[<em>{{msg.from}}</em>] Msg:   {{msg.body}}</div>
-                </div>
-         		 </br>
-               </br>
-                <input type="text" ng-model="name" placeholder="Name">
-                <input type="text" ng-model="msg" ng-keydown="addMessage($event)" placeholder="Message...">
-                <button class="button button-calm" ng-click="sendMsg()">  send   </button>
-            </div>
-        </ion-content>
-      </ion-view>
+<ion-view title="Chat Streaming">
+  <ion-content class="padding">
+      <div ng-controller="HomeTabCtrl">
+          <div id="messagesDiv">
+            <div ng-repeat="msg in messages">[<em>{{msg.from}}</em>] Msg:   {{msg.body}}</div>
+          </div>
+        </br>
+       </br>
+       <input type="text" ng-model="name" placeholder="Name">
+       <input type="text" ng-model="msg" ng-keydown="addMessage($event)" placeholder="Message...">
+       <button class="button button-calm" ng-click="sendMsg()">  send   </button>
+     </div>
+   </ion-content>
+</ion-view>
+
+<script>
+angular.module('ionicApp', ['ionic', 'firebase'])
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+    .state('tabs', {
+      url: "/tab",
+      abstract: true,
+      templateUrl: "tabs.html"
+    })
+    .state('tabs.home', {
+      url: "/home",
+      views: {
+        'home-tab': {
+          templateUrl: "home.html",
+          controller: 'HomeTabCtrl'
+        }
+      }
+    })
+
+   $urlRouterProvider.otherwise("/tab/home");
+
+})
+
+.controller('HomeTabCtrl', function($scope, $state, $firebase) {
+   var ref = new Firebase("https://vaisabrina.firebaseio.com/");
+        $scope.messages = $firebase(ref);
+        $scope.addMessage = function(e) {
+           $scope.sendMsg = function() {
+                  $scope.messages.$add({from: $scope.name, body: $scope.msg});
+                  $scope.msg = "";
+                }
+        }
+        $scope.clear = function(){
+          $scope.name = "";
+        }
+  console.log('HomeTabCtrl');
+
+});
+
+</script>
