@@ -92,6 +92,22 @@ angular.module('mychat.controllers', [])
     })
   };
 })
+
+.controller('HomeTabCtrl', function($scope, $state, $firebase,$stateParams) {
+
+   var ref = new Firebase('https://authioniccatolica.firebaseio.com/');
+
+        $scope.messages = $firebase(ref);
+        $scope.addMessage = function(e) {
+           $scope.sendMsg = function() {
+                  $scope.messages.add({'from': $scope.name, 'body': $scope.msg});
+                  $scope.msg = "";
+                }
+        }
+        $scope.clear = function(){
+          $scope.name = "";
+        }
+})
 .controller('chatController', ['$scope','Message', function($scope,Message){
 
     $scope.user="Guest";

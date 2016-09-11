@@ -11,7 +11,7 @@ angular.module('mychat.services', ['firebase'])
 })
 .factory('Message', ['$firebase',
 function($firebase) {
-  var ref = new Firebase('https://vaisabrina.firebaseio.com');
+  var ref = new Firebase('https://authioniccatolica.firebaseio.com/');
   var messages = $firebase(ref.child('messages')).$asArray();
 
   var Message = {
