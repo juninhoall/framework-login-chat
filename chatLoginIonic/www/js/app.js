@@ -12,23 +12,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // 'mychat.services' is found in services.js
 // 'mychat.controllers' is found in controllers.js
 angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controllers', 'mychat.services', 'btford.socket-io', 'firebase'])
-.config(function($stateProvider, $urlRouterProvider) {
-
-  $stateProvider
-    .state('tabs', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "tabs.html"
-    })
-    .state('tabs.home', {
-      url: "/home",
-      views: {
-        'home-tab': {
-          templateUrl: "home.html",
-          controller: 'HomeTabCtrl'
-        }
-      }
-    })
 .run(function ($ionicPlatform, $rootScope, $location, Auth, $ionicLoading) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

@@ -1,4 +1,4 @@
-angular.module('mychat.controllers', ['ionic', 'firebase'])
+angular.module('mychat.controllers', [])
 
 .controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
     //console.log('Login Controller Initialized');
@@ -66,46 +66,6 @@ angular.module('mychat.controllers', ['ionic', 'firebase'])
             alert("Please enter email and password both");
     }
 })
-/*
-.controller('ChatCtrl', function ($scope, Chats, $state) {
-    //console.log("Chat Controller initialized");
-
-    $scope.IM = {
-        textMessage: ""
-    };
-
-    Chats.selectRoom($state.params.roomId);
-
-    var roomName = Chats.getSelectedRoomName();
-
-    // Fetching Chat Records only if a Room is Selected
-    if (roomName) {
-        $scope.roomName = " - " + roomName;
-        $scope.chats = Chats.all();
-    }
-
-    $scope.sendMessage = function (msg) {
-        console.log(msg);
-        Chats.send($scope.displayName, msg);
-        $scope.IM.textMessage = "";
-    }
-
-    $scope.remove = function (chat) {
-        Chats.remove(chat);
-    }
-})
-
-.controller('RoomsCtrl', function ($scope, Rooms, Chats, $state) {
-    //console.log("Rooms Controller initialized");
-    $scope.rooms = Rooms.all();
-
-    $scope.openChatRoom = function (roomId) {
-        $state.go('tab.chat', {
-            roomId: roomId
-        });
-    }
-})
-*/
 .controller("AppCtrl", function($scope, Auth, $state){
 
   Auth.$onAuth(function(authData){
@@ -132,23 +92,13 @@ angular.module('mychat.controllers', ['ionic', 'firebase'])
     })
   };
 })
+.controller('chatController', ['$scope','Message', function($scope,Message){
 
-.controller('HomeTabCtrl', function($scope, $state, $firebase, $rootScope) {
+    $scope.user="Guest";
 
-   var ref = new Firebase('https://vaisabrina.firebaseio.com/');
+    $scope.messages= Message.all;
 
-        $scope.messages = $firebase(ref);
-        $scope.addMessage = function(e) {
-           $scope.sendMsg = function() {
-                  $scope.messages.$add({
-                    from: $scope.name, body: $scope.msg
-                  });
-                  $scope.msg = "";
-                }
-        }
-        $scope.clear = function(){
-          $scope.name = "";
-        }
-  console.log('HomeTabCtrl');
-
-});
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}]);
