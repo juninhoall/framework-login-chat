@@ -117,4 +117,53 @@ angular.module('mychat.controllers', [])
     $scope.inserisci = function(message){
       Message.create(message);
     };
-}]);
+}])
+.controller('ChatCtrl', ['$scope','Message', function($scope,Message){
+
+    $scope.user="Guest";
+
+    $scope.messages= Message.all;
+
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}])
+.controller('chatIndividualCtrl', ['$scope', function(){
+
+  new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
+     console.log('Peguei o objeto', snap.val());
+
+  });
+
+}])
+.controller('RtcommVideoDemoCtrl', function($scope, RtcommService){
+
+    /* Data model for the caller name */
+    $scope.demoCallerID = "";
+
+    /* Place a call to another user */
+    $scope.placeCall = function(){
+
+      /* Use the RtcommService to place a call to a user, enable video and audio using 'webrtc'*/
+      RtcommService.placeCall($scope.demoCallerID, ['webrtc']);
+
+    }
+
+    /* Stop the active call */
+    $scope.stopCall = function(){
+
+      /* Get the active endpoint in the session */
+      var activeEndpointUUID = RtcommService.getActiveEndpoint();
+      var activeEndpoint = RtcommService.getEndpoint(activeEndpointUUID);
+
+      /* Disconnect the endpoint from the session */
+      activeEndpoint.disconnect();
+
+    }
+  })
+  .controller('ModalCtrl', function($scope, $ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/call.html', {
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+});
