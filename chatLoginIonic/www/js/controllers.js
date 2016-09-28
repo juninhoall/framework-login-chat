@@ -131,6 +131,10 @@ angular.module('mychat.controllers', [])
       Message.create(message);
     };
 }])
+.controller('buscarIdCtrl', ['$scope', function($scope){
+
+}])
+
 .controller('chatIndividualCtrl', ['$scope', function(){
   var ref = new Firebase("https://authioniccatolica.firebaseio.com/users");
   ref.once("value", function(snapshot) {
@@ -140,6 +144,7 @@ angular.module('mychat.controllers', [])
       childData = childData.displayName;
       // Criando dom
       var para = document.createElement("div");
+      para.setAttribute("id", childData);
       para.className = "list";
       var a = document.createElement("a");
       a.className = "item item-thumbnail-right";//item item-thumbnail-left

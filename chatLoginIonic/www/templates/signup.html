@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 .fileUpload input.upload {
-  display:none;  
+  display:none;
   position: absolute;
   top: 0;
   right: 0;
@@ -22,7 +22,7 @@
         <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content class="padding">
-        <div class="list">
+        <div class="list" ng-controller="clickCtrlChat">
             <label class="item item-input">
                 <span class="">Email Address</span>
                 <input ng-model="user.email" type="text">
