@@ -1,3 +1,21 @@
+<style media="screen">
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+}
+.fileUpload input.upload {
+  display:none;  
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+</style>
 <ion-modal-view>
     <ion-header-bar class="bar bar-header bar-positive">
         <h1 class="title">Create New Account</h1>
@@ -5,7 +23,7 @@
     </ion-header-bar>
     <ion-content class="padding">
         <div class="list">
-            <label class="">
+            <label class="item item-input">
                 <span class="">Email Address</span>
                 <input ng-model="user.email" type="text">
             </label>
@@ -17,6 +35,11 @@
                 <span class="input-label">Display Name</span>
                 <input ng-model="user.displayname" type="text">
             </label>
+            <label class="item item-input fileUpload">
+                <span style="" class="input-label">Submit Your Picture Here</span>
+                <input ng-model="user.image" type="file" class="upload">
+            </label>
+
             <button class="button button-full button-positive" ng-click="createUser(user)">Create</button>
         </div>
     </ion-content>
