@@ -22,7 +22,6 @@
         <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content class="padding">
-        <div class="list" ng-controller="clickCtrlChat">
             <label class="item item-input">
                 <span class="">Email Address</span>
                 <input ng-model="user.email" type="text">
@@ -41,6 +40,5 @@
             </label>
 
             <button class="button button-full button-positive" ng-click="createUser(user)">Create</button>
-        </div>
     </ion-content>
 </ion-modal-view>
