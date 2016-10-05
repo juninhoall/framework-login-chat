@@ -1,37 +1,81 @@
-angular.module('mychat.controllers', [])
-
-angular.module('mychat.controllers', [])
 
 .controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
     //console.log('Login Controller Initialized');
 
+            var items = [4];
     var ref = new Firebase($scope.firebaseUrl);
     var auth = $firebaseAuth(ref);
 
     $ionicModal.fromTemplateUrl('templates/signup.html', {
-        scope: $scope
+       id: '1',
+        scope: $scope,
+         backdropClickToClose: false,
+         animation: 'slide-in-up'
     }).then(function (modal) {
-        $scope.modal = modal;
+        $scope.oModal1 = modal;
+    });
+    // Modal 2
+    $ionicModal.fromTemplateUrl('templates/interesses.html', {
+      id: '2', // We need to use and ID to identify the modal that is firing the event!
+      scope: $scope,
+      backdropClickToClose: false,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.oModal2 = modal;
+      console.log("Guardando Valores do Form");
+      items[0] = [user.email];
+      items[1] =[user.password];
+      items[2] =[user.displayName];
+      items[3] =[user.image];
     });
 
+    $scope.openModal = function(index) {
+      if (index == 1) $scope.oModal1.show();
+      else $scope.oModal2.show();
+    };
+
+    $scope.closeModal = function(index) {
+      if (index == 1) $scope.oModal1.hide();
+      else $scope.oModal2.hide();
+    };
+
+    /* Listen for broadcasted messages */
+
+    $scope.$on('modal.shown', function(event, modal) {
+      console.log('Modal ' + modal.id + ' shown!');
+    });
+
+    $scope.$on('modal.hidden', function(event, modal) {
+      console.log('Modal ' + modal.id + ' hiden!');
+    });
+
+    // Cleanup the modals when we're done with them (i.e: state change)
+    // Angular will broadcast a $destroy event just before tearing down a scope
+
+
     $scope.createUser = function (user) {
-        console.log("Create User Function called");
+        console.log("Deu Ruim!" + items[0].toString());
+
+
         if (user && user.email && user.password && user.displayname) {
             $ionicLoading.show({
                 template: 'Signing Up...'
             });
-
             auth.$createUser({
-                email: user.email,
-                password: user.password,
-                image: user.image
+              email: items[0],
+              password: items[1],
+              displayName: items[2],
+              image: items[3],
+              interesse: user.interesse
 
             }).then(function (userData) {
-                alert("User created successfully!");
+                alert("Deu Bom!");
                 ref.child("users").child(userData.uid).set({
-                    email: user.email,
-                    displayName: user.displayname,
-                    image: user.image
+                  email: items[0],
+                  password: items[1],
+                  displayName: items[2],
+                  image: items[3],
+                  interesse: items[4]
                 });
                 $ionicLoading.hide();
                 $scope.modal.hide();
