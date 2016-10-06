@@ -113,6 +113,7 @@ angular.module('mychat.controllers', [])
           $scope.name = "";
         }
 })
+<<<<<<< HEAD
 .controller('chatController', ['$scope','Message', function($scope,Message){
 
     $scope.user="Guest";
@@ -173,3 +174,15 @@ angular.module('mychat.controllers', [])
     $scope.modal = modal;
   });
 });
+=======
+.controller('chatController', ['$scope','Message', function($scope,Message){
+
+    $scope.user="Guest";
+
+    $scope.messages= Message.all;
+
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}]);
+>>>>>>> parent of 723e402... Evoluindo interface
