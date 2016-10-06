@@ -110,7 +110,6 @@ angular.module('mychat.controllers', [])
           $scope.name = "";
         }
 })
-<<<<<<< HEAD
 .controller('chatController', ['$scope','Message', function($scope,Message){
 
     $scope.user="Guest";
@@ -135,8 +134,27 @@ angular.module('mychat.controllers', [])
 
 }])
 
+.controller('chatController', ['$scope','Message', function($scope,Message){
+
+    $scope.user="Guest";
+
+    $scope.messages= Message.all;
+
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}])
+.controller('ChatCtrl', ['$scope','Message', function($scope,Message){
+
+    $scope.user="Guest";
+
+    $scope.messages= Message.all;
+
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}])
 .controller('chatIndividualCtrl', ['$scope', function(){
-<<<<<<< HEAD
   var ref = new Firebase("https://authioniccatolica.firebaseio.com/users");
   ref.once("value", function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
@@ -145,7 +163,6 @@ angular.module('mychat.controllers', [])
       childData = childData.displayName;
       // Criando dom
       var para = document.createElement("div");
-      para.setAttribute("id", childData);
       para.className = "list";
       var a = document.createElement("a");
       a.className = "item item-thumbnail-right";//item item-thumbnail-left
@@ -160,12 +177,10 @@ angular.module('mychat.controllers', [])
       minhadiv.appendChild(a);
       a.appendChild(img);
       a.appendChild(h2);
-=======
 
   new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
      console.log('Peguei o objeto', snap.val());
 
->>>>>>> parent of d382d6d... Código Funcional
   });
 
 }])
@@ -178,7 +193,6 @@ angular.module('mychat.controllers', [])
     $scope.modal = modal;
   });
 });
-=======
 .controller('chatController', ['$scope','Message', function($scope,Message){
 
     $scope.user="Guest";
@@ -189,4 +203,3 @@ angular.module('mychat.controllers', [])
       Message.create(message);
     };
 }]);
->>>>>>> parent of 723e402... Evoluindo interface
