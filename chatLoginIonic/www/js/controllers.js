@@ -164,31 +164,9 @@ angular.module('mychat.controllers', [])
   });
 });
 }])
-.controller('RtcommVideoDemoCtrl', function($scope, RtcommService){
-
-    /* Data model for the caller name */
-    $scope.demoCallerID = "";
-
-    /* Place a call to another user */
-    $scope.placeCall = function(){
-
-      /* Use the RtcommService to place a call to a user, enable video and audio using 'webrtc'*/
-      RtcommService.placeCall($scope.demoCallerID, ['webrtc']);
-
-    }
-
-    /* Stop the active call */
-    $scope.stopCall = function(){
-
-      /* Get the active endpoint in the session */
-      var activeEndpointUUID = RtcommService.getActiveEndpoint();
-      var activeEndpoint = RtcommService.getEndpoint(activeEndpointUUID);
-
-      /* Disconnect the endpoint from the session */
-      activeEndpoint.disconnect();
-
-    }
-  })
+.controller('buscaId' function(){
+    document.
+})
   .controller('ModalCtrl', function($scope, $ionicModal) {
   $ionicModal.fromTemplateUrl('templates/call.html', {
   }).then(function(modal) {
