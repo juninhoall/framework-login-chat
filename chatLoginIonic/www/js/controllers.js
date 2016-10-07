@@ -21,12 +21,15 @@ angular.module('mychat.controllers', [])
 
             auth.$createUser({
                 email: user.email,
-                password: user.password
+                password: user.password,
+                image: user.image
+
             }).then(function (userData) {
                 alert("User created successfully!");
                 ref.child("users").child(userData.uid).set({
                     email: user.email,
-                    displayName: user.displayname
+                    displayName: user.displayname,
+                    image: user.image
                 });
                 $ionicLoading.hide();
                 $scope.modal.hide();
@@ -165,8 +168,11 @@ angular.module('mychat.controllers', [])
 >>>>>>> origin/master
 .controller('chatIndividualCtrl', ['$scope', function(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> parent of aa950b1... Revert "Código Funcional"
   var ref = new Firebase("https://authioniccatolica.firebaseio.com/users");
   ref.once("value", function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
@@ -189,14 +195,17 @@ angular.module('mychat.controllers', [])
       minhadiv.appendChild(a);
       a.appendChild(img);
       a.appendChild(h2);
+<<<<<<< HEAD
 =======
 >>>>>>> origin/master
 
   new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
      console.log('Peguei o objeto', snap.val());
 
+=======
+>>>>>>> parent of aa950b1... Revert "Código Funcional"
   });
-
+});
 }])
 .controller('RtcommVideoDemoCtrl', function($scope, RtcommService){
 
