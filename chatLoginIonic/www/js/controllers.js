@@ -21,15 +21,12 @@ angular.module('mychat.controllers', [])
 
             auth.$createUser({
                 email: user.email,
-                password: user.password,
-                image: user.image
-
+                password: user.password
             }).then(function (userData) {
                 alert("User created successfully!");
                 ref.child("users").child(userData.uid).set({
                     email: user.email,
-                    displayName: user.displayname,
-                    image: user.image
+                    displayName: user.displayname
                 });
                 $ionicLoading.hide();
                 $scope.modal.hide();
@@ -132,30 +129,12 @@ angular.module('mychat.controllers', [])
     };
 }])
 .controller('chatIndividualCtrl', ['$scope', function(){
-  var ref = new Firebase("https://authioniccatolica.firebaseio.com/users");
-  ref.once("value", function(snapshot) {
-  snapshot.forEach(function(childSnapshot) {
-      var key = childSnapshot.key();
-      var childData = childSnapshot.val();
-      childData = childData.displayName;
-      // Criando dom
-      var para = document.createElement("div");
-      para.className = "list";
-      var a = document.createElement("a");
-      a.className = "item item-thumbnail-right";//item item-thumbnail-left
-      var h2 = document.createElement("h2");
-      var img = document.createElement("img");
-      img.setAttribute("src", "http://www.dinamicamente.org/images/dinamicamente.png");
-      var t = document.createTextNode(childData);
-      h2.appendChild(t);
-      var minhadiv = document.getElementById("myDIV").appendChild(para);
 
-      // Montando DOM
-      minhadiv.appendChild(a);
-      a.appendChild(img);
-      a.appendChild(h2);
+  new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
+     console.log('Peguei o objeto', snap.val());
+
   });
-});
+
 }])
 .controller('RtcommVideoDemoCtrl', function($scope, RtcommService){
 
