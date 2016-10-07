@@ -1,7 +1,5 @@
 angular.module('mychat.controllers', [])
 
-angular.module('mychat.controllers', [])
-
 .controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
     //console.log('Login Controller Initialized');
 

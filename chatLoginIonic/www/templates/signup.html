@@ -24,24 +24,21 @@
     <ion-content class="padding">
             <label class="item item-input">
                 <span class="">Email Address</span>
-                <input ng-model="user.email" type="text" id="email">
+                <input ng-model="user.email" type="text">
             </label>
             <label class="item item-input">
                 <span class="input-label">Passsword</span>
-                <input ng-model="user.password" type="password" id="senha">
+                <input ng-model="user.password" type="password">
             </label>
             <label class="item item-input">
                 <span class="input-label">Display Name</span>
-                <input ng-model="user.displayname" type="text" id="nome">
+                <input ng-model="user.displayname" type="text">
             </label>
             <label class="item item-input fileUpload">
                 <span style="" class="input-label">Submit Your Picture Here</span>
-                <input ng-model="user.image" type="text" class="text" id="image">
+                <input ng-model="user.image" type="file" class="upload">
             </label>
-<button class="button button-full button-positive" ng-click="createUser(user)">Create</button>
-            <button ng-click="openModal(2)" class="button button-small button-outline icon-left ion-person-add button-positive">
-                Create New Account
-            </button>
-          <!--  <button class="button button-full button-positive" ng-click="createUser(user)">Create</button>-->
+
+            <button class="button button-full button-positive" ng-click="createUser(user)">Create</button>
     </ion-content>
 </ion-modal-view>
