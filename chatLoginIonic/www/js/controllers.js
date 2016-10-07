@@ -21,15 +21,12 @@ angular.module('mychat.controllers', [])
 
             auth.$createUser({
                 email: user.email,
-                password: user.password,
-                image: user.image
-
+                password: user.password
             }).then(function (userData) {
                 alert("User created successfully!");
                 ref.child("users").child(userData.uid).set({
                     email: user.email,
-                    displayName: user.displayname,
-                    image: user.image
+                    displayName: user.displayname
                 });
                 $ionicLoading.hide();
                 $scope.modal.hide();
@@ -111,6 +108,9 @@ angular.module('mychat.controllers', [])
           $scope.name = "";
         }
 })
+<<<<<<< HEAD
+.controller('chatController', ['$scope','Message', function($scope,Message){
+=======
 .controller('chatController', ['$scope','Message', function($scope,Message){
 
     $scope.user="Guest";
@@ -135,7 +135,36 @@ angular.module('mychat.controllers', [])
 
 }])
 
+.controller('chatController', ['$scope','Message', function($scope,Message){
+>>>>>>> origin/master
+
+    $scope.user="Guest";
+
+    $scope.messages= Message.all;
+
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}])
+.controller('ChatCtrl', ['$scope','Message', function($scope,Message){
+
+    $scope.user="Guest";
+
+    $scope.messages= Message.all;
+
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}])
+<<<<<<< HEAD
+.controller('buscarIdCtrl', ['$scope', function($scope){
+
+}])
+
+=======
+>>>>>>> origin/master
 .controller('chatIndividualCtrl', ['$scope', function(){
+<<<<<<< HEAD
   var ref = new Firebase("https://authioniccatolica.firebaseio.com/users");
   ref.once("value", function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
@@ -144,7 +173,6 @@ angular.module('mychat.controllers', [])
       childData = childData.displayName;
       // Criando dom
       var para = document.createElement("div");
-      para.setAttribute("id", childData);
       para.className = "list";
       var a = document.createElement("a");
       a.className = "item item-thumbnail-right";//item item-thumbnail-left
@@ -159,37 +187,42 @@ angular.module('mychat.controllers', [])
       minhadiv.appendChild(a);
       a.appendChild(img);
       a.appendChild(h2);
+=======
+
+  new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
+     console.log('Peguei o objeto', snap.val());
+
   });
-});
+
 }])
 .controller('RtcommVideoDemoCtrl', function($scope, RtcommService){
 
     /* Data model for the caller name */
     $scope.demoCallerID = "";
+>>>>>>> parent of d382d6d... Código Funcional
 
-    /* Place a call to another user */
-    $scope.placeCall = function(){
+  new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
+     console.log('Peguei o objeto', snap.val());
 
-      /* Use the RtcommService to place a call to a user, enable video and audio using 'webrtc'*/
-      RtcommService.placeCall($scope.demoCallerID, ['webrtc']);
+  });
 
-    }
-
-    /* Stop the active call */
-    $scope.stopCall = function(){
-
-      /* Get the active endpoint in the session */
-      var activeEndpointUUID = RtcommService.getActiveEndpoint();
-      var activeEndpoint = RtcommService.getEndpoint(activeEndpointUUID);
-
-      /* Disconnect the endpoint from the session */
-      activeEndpoint.disconnect();
-
-    }
-  })
+}])
+.controller('buscaId' function(){
+    document.
+})
   .controller('ModalCtrl', function($scope, $ionicModal) {
   $ionicModal.fromTemplateUrl('templates/call.html', {
   }).then(function(modal) {
     $scope.modal = modal;
   });
 });
+.controller('chatController', ['$scope','Message', function($scope,Message){
+
+    $scope.user="Guest";
+
+    $scope.messages= Message.all;
+
+    $scope.inserisci = function(message){
+      Message.create(message);
+    };
+}]);
