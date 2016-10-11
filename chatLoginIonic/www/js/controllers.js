@@ -111,9 +111,6 @@ angular.module('mychat.controllers', [])
           $scope.name = "";
         }
 })
-<<<<<<< HEAD
-.controller('chatController', ['$scope','Message', function($scope,Message){
-=======
 .controller('chatController', ['$scope','Message', function($scope,Message){
 
     $scope.user="Guest";
@@ -134,45 +131,7 @@ angular.module('mychat.controllers', [])
       Message.create(message);
     };
 }])
-.controller('buscarIdCtrl', ['$scope', function($scope){
-
-}])
-
-.controller('chatController', ['$scope','Message', function($scope,Message){
->>>>>>> origin/master
-
-    $scope.user="Guest";
-
-    $scope.messages= Message.all;
-
-    $scope.inserisci = function(message){
-      Message.create(message);
-    };
-}])
-.controller('ChatCtrl', ['$scope','Message', function($scope,Message){
-
-    $scope.user="Guest";
-
-    $scope.messages= Message.all;
-
-    $scope.inserisci = function(message){
-      Message.create(message);
-    };
-}])
-<<<<<<< HEAD
-.controller('buscarIdCtrl', ['$scope', function($scope){
-
-}])
-
-=======
->>>>>>> origin/master
 .controller('chatIndividualCtrl', ['$scope', function(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> parent of aa950b1... Revert "Código Funcional"
   var ref = new Firebase("https://authioniccatolica.firebaseio.com/users");
   ref.once("value", function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
@@ -195,15 +154,6 @@ angular.module('mychat.controllers', [])
       minhadiv.appendChild(a);
       a.appendChild(img);
       a.appendChild(h2);
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
-
-  new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
-     console.log('Peguei o objeto', snap.val());
-
-=======
->>>>>>> parent of aa950b1... Revert "Código Funcional"
   });
 });
 }])
@@ -211,30 +161,30 @@ angular.module('mychat.controllers', [])
 
     /* Data model for the caller name */
     $scope.demoCallerID = "";
->>>>>>> parent of d382d6d... Código Funcional
 
-  new Firebase('https://authioniccatolica.firebaseio.com/users/').once('value', function(snap) {
-     console.log('Peguei o objeto', snap.val());
+    /* Place a call to another user */
+    $scope.placeCall = function(){
 
-  });
+      /* Use the RtcommService to place a call to a user, enable video and audio using 'webrtc'*/
+      RtcommService.placeCall($scope.demoCallerID, ['webrtc']);
 
-}])
-.controller('buscaId' function(){
-    document.
-})
+    }
+
+    /* Stop the active call */
+    $scope.stopCall = function(){
+
+      /* Get the active endpoint in the session */
+      var activeEndpointUUID = RtcommService.getActiveEndpoint();
+      var activeEndpoint = RtcommService.getEndpoint(activeEndpointUUID);
+
+      /* Disconnect the endpoint from the session */
+      activeEndpoint.disconnect();
+
+    }
+  })
   .controller('ModalCtrl', function($scope, $ionicModal) {
   $ionicModal.fromTemplateUrl('templates/call.html', {
   }).then(function(modal) {
     $scope.modal = modal;
   });
 });
-.controller('chatController', ['$scope','Message', function($scope,Message){
-
-    $scope.user="Guest";
-
-    $scope.messages= Message.all;
-
-    $scope.inserisci = function(message){
-      Message.create(message);
-    };
-}]);
