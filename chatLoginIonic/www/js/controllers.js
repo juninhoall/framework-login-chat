@@ -1,8 +1,6 @@
 angular.module('mychat.controllers', [])
 
 .controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
-    //console.log('Login Controller Initialized');
-
     var ref = new Firebase($scope.firebaseUrl);
     var auth = $firebaseAuth(ref);
 
@@ -13,7 +11,7 @@ angular.module('mychat.controllers', [])
     });
 
     $scope.createUser = function (user) {
-        console.log("Create User Function called");
+        console.log("Error in Authentication" + user);
         if (user && user.email && user.password && user.displayname) {
             $ionicLoading.show({
                 template: 'Signing Up...'
@@ -25,7 +23,7 @@ angular.module('mychat.controllers', [])
                 image: user.image
 
             }).then(function (userData) {
-                alert("User created successfully!");
+                alert("successfully!");
                 ref.child("users").child(userData.uid).set({
                     email: user.email,
                     displayName: user.displayname,
