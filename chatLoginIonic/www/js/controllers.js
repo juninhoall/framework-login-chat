@@ -72,6 +72,7 @@ angular.module('mychat.controllers', [])
   Auth.$onAuth(function(authData){
     if (authData === null) {
       console.log('usuario nao autenticado');
+
     }else {
       $state.go('tab.rooms');
     }
@@ -135,23 +136,44 @@ angular.module('mychat.controllers', [])
   snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key();
       var childData = childSnapshot.val();
-      childData = childData.displayName;
+      name = childData.displayName;
+      var email = childData.email
       // Criando dom
       var para = document.createElement("div");
       para.className = "list";
+      para.setAttribute("id", email );
       var a = document.createElement("a");
+      a.setAttribute("id", email);
+
       a.className = "item item-thumbnail-right";//item item-thumbnail-left
       var h2 = document.createElement("h2");
+      h2.setAttribute("id", email);
       var img = document.createElement("img");
       img.setAttribute("src", "http://www.dinamicamente.org/images/dinamicamente.png");
-      var t = document.createTextNode(childData);
+        img.setAttribute("id", email);
+      var t = document.createTextNode(name);
       h2.appendChild(t);
       var minhadiv = document.getElementById("myDIV").appendChild(para);
-
       // Montando DOM
       minhadiv.appendChild(a);
       a.appendChild(img);
       a.appendChild(h2);
   });
+
 });
+}])
+
+.controller('parConexaoCtrl', ['$rootScope', '$scope', '$stateParams', '$timeout', '$ionicScrollDelegate', '$firebase', function($rootScope, $scope, $stateParams, $timeout, $ionicScrollDelegate, $firebase) {
+  //@TODO buscar id de pessoa ao clickar
+  var el = document.getElementById('myDIV');
+    el.addEventListener('click', function(e) {
+      var valor = e.target.id;
+      alert(valor);
+    });
+  $scope.chatToUser = 'todo';
+  $scope.loggedInUser = 'todo';
+  var chatRef = new Firebase('https://authioniccatolica.firebaseio.com/'+ 'chats/chat_' + $rootScope.getHash($scope.chatToUser, $scope.loggedInUser));
+  var sync = $firebase(chatRef);
+  $scope.messages = sync.$asArray();
+
 }]);
