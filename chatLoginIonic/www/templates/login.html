@@ -1,37 +1,62 @@
-<ion-view view-title="Login">
+<style media="screen">
+/*
+  .pane {
+    background-color: #a3b4e2!important;
+}
+.list:last-child.card {
+    background: #f9d7d6;
+}
+.button.button-positive.activated {
+    border-color: #a3b4e2;
+    background-color: #a3b4e2;
+  }
+  .button.button-positive.button-outline {
+    border-color: #a3b4e2;
+    background: transparent;
+    color: #a3b4e2;
+}
+.bar.bar-assertive {
+    border-color: #387ef5;
+    background-color: #f9d7d6!important;
+    background-image: linear-gradient(0deg, #e42112, #e42112 50%, transparent 50%);
+    color: #fff;
+}*/
+.vermelho {
+    color: #e42112;
+}
+</style>
+<ion-view style="background-color=blue" view-title="Login">
     <ion-content class="padding">
         <div class="list">
             <img src="img/logo1.png" class="logo">
 
         </div>
-        <div class="list card padding">
-            <label class="item item-input">
+        <div class="list  padding form">
+            <label class="item item-input item-stacked-label">
                 <span class="input-label">Email</span>
                 <input type="text" ng-model="user.email">
             </label>
-            <label class="item item-input">
+            <label class="item item-input item-stacked-label">
                 <span class="input-label">Password</span>
                 <input type="password" ng-model="user.pwdForLogin">
             </label>
-            <button ng-click="signIn(user)" class="button button-block button-positive activated">
+            <button ng-click="signIn(user)" class="button button-full button-assertive activated">
                 Sign In
             </button>
-        </div>
-        <div class="list" style="text-align:center">
-
-            <button ng-click="modal.show()" class="button button-small button-outline icon-left ion-person-add button-positive">
-                Create New Account
-            </button>
-            <div class="list" ng-controller="AppCtrl">
-              <button  class="button button-small button-outline icon-left ion-person-add button-positive ion-social-google">Google+</button>
-              <button  class="button button-small button-outline icon-left ion-person-add button-positive ion-social-twitter ">Twitter</button>
-              <button ng-click="login('facebook')"  class="button button-small button-outline icon-left ion-person-add button-positive ion-social-facebook " ng-click="login('facebook')">Facebook</button>
-              <div class="list card" ng-if="authData.facebook">
-                <div class="item item-avatar">
-                    <img src="" ng-src="{{authData.facebook.profileImageURL}}" alt="{{authData.facebook.displayName}}" />
-                    <h3>{{authData.facebook.displayName}}</h3>
+            <p class="message">Not registered? <a class="vermelho" ng-click="modal.show()">Create an account</a></p>
+            <hr>
+            <div class="list" style="text-align:center">
+                <div class="list" ng-controller="AppCtrl">
+                  <button  class="button button-small button-outline icon-left ion-person-add button-positive ion-social-google">Google+</button>
+                  <button  class="button button-small button-outline icon-left ion-person-add button-positive ion-social-twitter ">Twitter</button>
+                  <button ng-click="login('facebook')"  class="button button-small button-outline icon-left ion-person-add button-positive ion-social-facebook " ng-click="login('facebook')">Facebook</button>
+                  <div class="list card" ng-if="authData.facebook">
+                    <div class="item item-avatar">
+                        <img src="" ng-src="{{authData.facebook.profileImageURL}}" alt="{{authData.facebook.displayName}}" />
+                        <h3>{{authData.facebook.displayName}}</h3>
+                    </div>
+                  </div>
                 </div>
-              </div>
             </div>
         </div>
     </ion-content>
